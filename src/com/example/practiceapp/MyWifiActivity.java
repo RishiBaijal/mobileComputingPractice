@@ -3,6 +3,7 @@ package com.example.practiceapp;
 import android.support.v7.app.ActionBarActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
 import android.os.Bundle;
@@ -13,16 +14,31 @@ public class MyWifiActivity extends ActionBarActivity {
 
 	WifiP2pManager mManager;
 	Channel channel;
-	BroadcastReceiver broadcastReceiver;
+	BroadcastReceiver broadcastReceiver = null;
+
+	public static final String TAG = "wifidirectdemo";
+	private WifiP2pManager manager;
+	private boolean isWifiP2pEnabled = false;
+	private boolean retryChannel = false;
+
+	private final IntentFilter intentFilter = new IntentFilter();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_my_wifi);
+		intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
+		intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
+		intentFilter
+				.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
+		intentFilter
+				.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+
 		mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
 		channel = mManager.initialize(this, getMainLooper(), null);
 		broadcastReceiver = new WifiDirectBroadcastReceiver(mManager, channel,
 				this);
+
 	}
 
 	@Override
@@ -42,5 +58,16 @@ public class MyWifiActivity extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	public void setIsWifiP2pEnabled(boolean b) {
+		// TODO Auto-generated method stub
+		this.isWifiP2pEnabled = b;
+
+	}
+	
+	public void resetData()
+	{
+		DeviceListFragment fragmentList= (DeviceListFragment) getFragmentManager();
 	}
 }
