@@ -1,16 +1,22 @@
 package com.example.practiceapp;
 
+import com.example.practiceapp.DeviceListFragment.DeviceActionListener;
+
 import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
+import android.net.wifi.p2p.WifiP2pConfig;
+import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
+import android.net.wifi.p2p.WifiP2pManager.ChannelListener;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MyWifiActivity extends ActionBarActivity {
+public class MyWifiActivity extends Activity implements ChannelListener, DeviceActionListener{
 
 	WifiP2pManager mManager;
 	Channel channel;
@@ -69,5 +75,35 @@ public class MyWifiActivity extends ActionBarActivity {
 	public void resetData()
 	{
 		DeviceListFragment fragmentList= (DeviceListFragment) getFragmentManager();
+	}
+
+	@Override
+	public void showDetails(WifiP2pDevice device) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cancelDisconnect() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void connect(WifiP2pConfig config) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disconnect() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onChannelDisconnected() {
+		// TODO Auto-generated method stub
+		
 	}
 }
