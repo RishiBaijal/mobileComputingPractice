@@ -16,7 +16,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MyWifiActivity extends Activity implements ChannelListener, DeviceActionListener{
+public class MyWifiActivity extends Activity implements ChannelListener,
+		DeviceActionListener {
 
 	WifiP2pManager mManager;
 	Channel channel;
@@ -71,39 +72,50 @@ public class MyWifiActivity extends Activity implements ChannelListener, DeviceA
 		this.isWifiP2pEnabled = b;
 
 	}
-	
-	public void resetData()
-	{
-		DeviceListFragment fragmentList= (DeviceListFragment) getFragmentManager();
+
+	public void resetData() {
+		DeviceListFragment fragmentList = (DeviceListFragment) getFragmentManager()
+				.findFragmentById(R.id.frag_list);
+		DeviceDetailFragment fragmentDetail = (DeviceDetailFragment) getFragmentManager()
+				.findFragmentById(R.id.frag_detail);
+		if (fragmentList != null)
+		{
+			fragmentList.clearPeers();
+		}
+		if (fragmentDetail!=null)
+		{
+			fragmentList.clearPeers();
+		}
+
 	}
 
 	@Override
 	public void showDetails(WifiP2pDevice device) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void cancelDisconnect() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void connect(WifiP2pConfig config) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void disconnect() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onChannelDisconnected() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
