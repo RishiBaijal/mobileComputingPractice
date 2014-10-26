@@ -19,7 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.example.practiceapp.wifidirect.DeviceListFragment.DeviceActionListener;
+import com.example.practiceapp.DeviceListFragment.DeviceActionListener;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -33,5 +33,22 @@ public class DeviceDetailFragment extends Fragment implements
 		ConnectionInfoListener {
 	protected static final int CHOOSE_FILE_RESULT_CODE = 20;
 	private View mContentView = null;
+	private WifiP2pDevice device;
+	private WifiP2pInfo info;
+	ProgressDialog progresDialog = null;
+
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+	}
+	public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	{
+		mContentView=inflater.inflate(R.layout.device_detail, null);
+		mContentView.findViewById(id)
+	}
+	@Override
+	public void onConnectionInfoAvailable(WifiP2pInfo info) {
+		//Need to add some code to this part but I don't know how to do it
+
+	}
 
 }
